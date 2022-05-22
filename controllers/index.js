@@ -1,5 +1,5 @@
-const getYourPathController = require('./getYourPathController.js')
+const postTicketController = require('./postTicketController.js')
 
 module.exports = {
-    getYourPathController,
+    postTicketController,
 }

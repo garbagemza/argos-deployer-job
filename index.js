@@ -7,7 +7,7 @@ const { envcheck, logger, handler } = require('./utilities')
 const { catchAll, health } = require('./middlewares')
 
 const { 
-	getYourPathController
+	postTicketController
 } = require('./controllers')
 
 const app = express()
@@ -23,7 +23,7 @@ app.use( (req, _, done) => {
 })
 
 // add your middleware here
-app.get('/your/path', handler(getYourPathController))
+app.post('/ticket', handler(postTicketController))
 
 // catch for liveness probe
 health(app)
