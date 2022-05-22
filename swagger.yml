@@ -1,0 +1,18 @@
+openapi: '3.0.2'
+info:
+  title: argos-node-template
+  version: '1.0'
+servers:
+  - url: http://localhost
+paths:
+  /your/path:
+    get:
+      description: 'retrieves data at /your/path'
+      responses:
+        '200':
+          description: OK
+    post:
+      description: 'adds data at /your/path'
+      responses:
+        '200':
+          description: OK
