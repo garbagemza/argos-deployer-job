@@ -3,5 +3,6 @@ mode_modules
 *.env
 .git
 .gitignore
+*.log
 
 

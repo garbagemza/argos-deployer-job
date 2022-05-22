@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express')
 const createError = require('http-errors')
 
-const { envcheck } = require('./utilities')
+const { envcheck, logger } = require('./utilities')
 
 const { catchAll, health } = require('./middlewares')
 
@@ -25,5 +25,6 @@ health(app)
 // this middleware catches the unhandled paths
 catchAll(app)
 
+logger.info(`argos-deploy rolling on port: ${process.env.PORT}`)
 app.listen(process.env.PORT)
 
