@@ -1,8 +1,11 @@
 const createError = require('http-errors')
 
-module.exports = function catchAll(app) {
-    app.use((req, res, next) => {
+function catchAll(app, handler) {
+    app.use(handler((req, res, logger) => {
+        logger.warn('server.handler.unmatched')
         res.status(404)
         res.json(new createError(404, "Not found."))
-    })    
+    }))
 }
+
+module.exports = catchAll

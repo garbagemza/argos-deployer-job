@@ -1,7 +1,9 @@
 const envcheck = require('./envcheck.js')
-const logger = require('./log')
+const logger = require('./logger')
+const handler = require('./handler')
 
 module.exports = {
     envcheck,
-    logger
+    logger,
+    handler
 }
