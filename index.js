@@ -16,6 +16,7 @@ const app = express()
 // an exception will be thrown.
 envcheck(['PORT'])
 
+// this middleware intercepts all calls and log the path
 app.use( (req, _, done) => {
     logger.info(`[${req.method}] ${req.originalUrl}`);
     done();
