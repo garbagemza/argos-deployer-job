@@ -1,7 +1,7 @@
-const { yourService } = require('../services')
+const { dbService } = require('../services')
 
 module.exports = function(req, res) {
-    const sum = yourService.yourFunction(1, 2)
+    const sum = dbService.yourFunctions(1, 2)
 
     res.send('The sum is: ' + sum)
 }

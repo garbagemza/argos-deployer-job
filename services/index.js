@@ -1,5 +1,5 @@
-const yourService = require('./YourService.js')
+const dbService = require('./dbService.js')
 
 module.exports = {
-    yourService
+    dbService
 }

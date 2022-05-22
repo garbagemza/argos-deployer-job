@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express')
-const createError = require('http-errors')
 
 const { envcheck, logger, handler } = require('./utilities')
 
