@@ -1,8 +1,6 @@
 require('dotenv').config();
 const express = require('express')
-
-const { envcheck, logger, handler } = require('./utilities')
-
+const { envcheck, logger, handler, dbMigrator } = require('./utilities')
 const { catchAll, health } = require('./middlewares')
 
 const { 
@@ -12,8 +10,11 @@ const {
 const app = express()
 
 // this checks the existence of environment variables, if they are not declared
-// an exception will be thrown.
-envcheck(['PORT'])
+// an exception is thrown.
+envcheck(['PORT', 'WORKDIR'])
+
+// this migrates the current data base and create non existing tables
+dbMigrator()
 
 // this middleware intercepts all calls and log the path
 app.use( (req, _, done) => {
