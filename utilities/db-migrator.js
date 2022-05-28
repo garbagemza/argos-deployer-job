@@ -5,11 +5,11 @@ const db = require('better-sqlite3')(process.env['WORKDIR'] + '/deploys.db', { v
 const dbMigrator = function(requiredVersion) {
     const currentVersion = currentDBVersion()
 
-    logger.info(`current db version:  ${currentVersion}`)
-    logger.info(`required db version: ${requiredVersion}`)
+    logger.info(`db.migrator.current.db.version:  ${currentVersion}`)
+    logger.info(`db.migrator.required.db.version: ${requiredVersion}`)
 
     for (let index = currentVersion; index < requiredVersion; index++) {
-        logger.info(`migrating db from ${index} to ${index + 1}`)
+        logger.info(`db.migrator.migrating.db from ${index} to ${index + 1}`)
         const transaction = db.transaction((stmts) => {
             for (const stmt of stmts) stmt.run()
         })
