@@ -8,7 +8,7 @@ const options = {
     verbose: logger.info,
 }
 
-logger.warn(`utilities.database configure: ${JSON.stringify(options)}`)
+logger.info(`utilities.database.configure`)
 sqlite.configure(options)
 
 module.exports = {
