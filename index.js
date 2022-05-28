@@ -14,7 +14,7 @@ const app = express()
 envcheck(['PORT', 'WORKDIR'])
 
 // this migrates the current data base and create non existing tables
-dbMigrator()
+dbMigrator(1)
 
 // this middleware intercepts all calls and log the path
 app.use( (req, _, done) => {
