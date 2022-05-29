@@ -5,7 +5,7 @@ RUN apk add git
 WORKDIR /app
 COPY package.json package-lock.json ./
 
-RUN npm ci --prod
+RUN npm install --prod
 
 COPY . .
 
