@@ -1,17 +1,18 @@
 require('dotenv').config();
 const express = require('express')
-const { envcheck, logger, handler, database } = require('./utilities')
+const { envcheck, logger, handler, validator, database } = require('./utilities')
+const { validatePostTicket } = require('./models')
 const { catchAll, health } = require('./middlewares')
 
-const { 
-	postTicketController
-} = require('./controllers')
+const { postTicketController } = require('./controllers')
 
 const app = express()
 
 // this checks the existence of environment variables, if they are not declared
 // an exception is thrown.
 envcheck(['PORT', 'WORKDIR'])
+
+app.use(express.json());
 
 // this middleware intercepts all calls and log the path
 app.use( (req, _, done) => {
@@ -20,6 +21,7 @@ app.use( (req, _, done) => {
 })
 
 // add your middleware here
+app.post('/ticket', validator(validatePostTicket))
 app.post('/ticket', handler(postTicketController))
 
 // catch for liveness probe
