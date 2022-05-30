@@ -1,9 +1,9 @@
 const { database } = require('../utilities')
 
-function yourFunction(a, b) {
-    return a + b
+function postTicket(userName, repositoryName) {
+    return `${userName}/${repositoryName}`
 }
 
 module.exports = {
-    yourFunction
+    postTicket
 }

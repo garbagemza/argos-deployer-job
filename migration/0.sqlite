@@ -1,7 +1,6 @@
 CREATE TABLE deploys (
     id INTEGER PRIMARY KEY, 
-    uuid STRING NOT NULL, 
-    issuedAt TEXT NOT NULL,
+    uuid STRING NOT NULL UNIQUE,
     engine STRING NOT NULL,
     user STRING NOT NULL,
     repo STRING NOT NULL
@@ -9,7 +8,7 @@ CREATE TABLE deploys (
 
 CREATE TABLE deploy_statuses (
     id INTEGER PRIMARY KEY,
-    deployId INTEGER NOT NULL,
+    deployUuid STRING NOT NULL,
     status STRING NOT NULL,
     date TEXT NOT NULL
 );

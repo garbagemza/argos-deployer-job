@@ -1,8 +1,11 @@
 const { dbService } = require('../services')
-const { validatePostTicket } = require('../models')
 const createError = require('http-errors')
 
 module.exports = function(req, res) {
-    const sum = dbService.yourFunction(1, 2)
+    const body = req.body
+    const userName = body.userName
+    const repositoryName = body.repositoryName
+
+    const sum = dbService.postTicket(userName, repositoryName)
     res.send(`Your sum is ${sum}`)
 }
