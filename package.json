@@ -20,7 +20,7 @@
     "http-errors": "^2.0.0",
     "joi": "^17.6.0",
     "jsonfile": "^6.1.0",
-    "npm-sqlite": "https://github.com/garbagemza/npm-sqlite.git",
+    "npm-sqlite": "github:garbagemza/npm-sqlite",
     "winston": "^3.7.2",
     "winston-daily-rotate-file": "^4.6.1"
   },

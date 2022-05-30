@@ -10,5 +10,6 @@ CREATE TABLE deploy_statuses (
     id INTEGER PRIMARY KEY,
     deployUuid STRING NOT NULL,
     status STRING NOT NULL,
+    reason STRING NOT NULL,
     date TEXT NOT NULL
 );
