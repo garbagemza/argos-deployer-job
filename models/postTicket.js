@@ -1,6 +1,10 @@
 const joi = require('joi')
 
 const schema = joi.object({
+    userName: joi.string()
+                        .min(3)
+                        .alphanum()
+                        .required(),
     repositoryName: joi.string()
                         .min(3)
                         .required()
