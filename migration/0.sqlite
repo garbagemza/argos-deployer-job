@@ -1,1 +1,8 @@
-CREATE TABLE deploys (id INTEGER PRIMARY KEY, uuid STRING NOT NULL, issuedAt STRING NOT NULL);
+CREATE TABLE deploys (
+    id INTEGER PRIMARY KEY, 
+    uuid STRING NOT NULL, 
+    issuedAt STRING NOT NULL, 
+    engine STRING NOT NULL,
+    user STRING NOT NULL,
+    repo STRING NOT NULL
+);
