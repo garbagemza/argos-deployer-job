@@ -15,6 +15,12 @@ const init = function() {
     db = sqlite.configure(options)
 }
 
+const runInTransaction = function(statements) {
+    logger.info(`utilities.database.runintransaction`)
+    sqlite.runInTransaction(db, statements, logger.info)
+}
+
 module.exports = {
-    init
+    init,
+    runInTransaction
 }
