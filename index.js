@@ -12,7 +12,10 @@ const app = express()
 // an exception is thrown.
 envcheck(['PORT', 'WORKDIR'])
 
-app.use(express.json());
+// initializes database
+database.init()
+
+app.use(express.json())
 
 // this middleware intercepts all calls and log the path
 app.use( (req, _, done) => {
@@ -32,4 +35,3 @@ catchAll(app, handler)
 
 logger.info(`argos-deploy rolling on port: ${process.env.PORT}`)
 app.listen(process.env.PORT)
-
