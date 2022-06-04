@@ -1,6 +1,10 @@
 const { database } = require('../utilities')
 const { nanoid } = require('nanoid')
 
+function getTicket(ticketId) {
+    return getTicketByTicketId(ticketId)
+}
+
 function postTicket(userName, repositoryName) {
     const pendingTicket = getPendingTicket(userName, repositoryName)
     if (pendingTicket != null) {
@@ -13,7 +17,7 @@ function postTicket(userName, repositoryName) {
 function saveTicket(userName, repositoryName) {
     const initialStatus = 'PENDING'
     const uuid = nanoid()
-    const insertDeploy = `INSERT INTO deploys (uuid, status, engine, user, repo) VALUES ('${uuid}', '${initialStatus}', 'github', '${userName}', '${repositoryName}');`
+    const insertDeploy = `INSERT INTO deploys (uuid, status, issuedDate, lastModifiedDate, engine, user, repo) VALUES ('${uuid}', '${initialStatus}', datetime(), datetime(), 'github', '${userName}', '${repositoryName}');`
     const insertStatus = `INSERT INTO deploy_statuses
                                 (deployUuid, status, reason, date)
                             VALUES
@@ -42,6 +46,15 @@ function getPendingTicket(userName, repositoryName) {
     return list[0] || null
 }
 
+function getTicketByTicketId(ticketId) {
+    const statement = `SELECT status, issuedDate, lastModifiedDate, engine, user, repo FROM deploys d WHERE 1=1
+    AND d.uuid = '${ticketId}'
+    LIMIT 1;`
+    const list = database.query(statement)
+    return list[0] || null
+}
+
 module.exports = {
+    getTicket,
     postTicket
 }

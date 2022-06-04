@@ -1,10 +1,10 @@
 require('dotenv').config();
 const express = require('express')
-const { envcheck, logger, handler, validator, database } = require('./utilities')
-const { validatePostTicket } = require('./models')
+const { envcheck, logger, handler, bodyValidator, paramValidator, database } = require('./utilities')
+const { validateTicket, validatePostTicket } = require('./models')
 const { catchAll, health } = require('./middlewares')
 
-const { postTicketController } = require('./controllers')
+const { getTicketController, postTicketController } = require('./controllers')
 
 const app = express()
 
@@ -24,8 +24,11 @@ app.use( (req, _, done) => {
 })
 
 // add your middleware here
-app.post('/ticket', validator(validatePostTicket))
+app.post('/ticket', bodyValidator(validatePostTicket))
 app.post('/ticket', handler(postTicketController))
+
+app.get('/ticket/:ticket', paramValidator(validateTicket))
+app.get('/ticket/:ticket', handler(getTicketController))
 
 // catch for liveness probe
 health(app)
@@ -33,5 +36,5 @@ health(app)
 // this middleware catches the unhandled paths
 catchAll(app, handler)
 
-logger.info(`argos-deploy rolling on port: ${process.env.PORT}`)
+logger.info(`argos-deploy.port ${process.env.PORT}`)
 app.listen(process.env.PORT)

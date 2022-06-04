@@ -1,3 +1,5 @@
+const _validate = require('./validate')
+
 const joi = require('joi')
 
 const schema = joi.object({
@@ -11,12 +13,7 @@ const schema = joi.object({
 })
 
 const validate = function(json) {
-    const value = schema.validate(json)
-    if (value.error) {
-        throw value.error
-    } else {
-        return value
-    }
+    return _validate(schema, json)
 }
 
 module.exports = validate

@@ -2,6 +2,8 @@ CREATE TABLE deploys (
     id INTEGER PRIMARY KEY, 
     uuid STRING NOT NULL UNIQUE,
     status STRING NOT NULL,
+    issuedDate TEXT NOT NULL,
+    lastModifiedDate TEXT NOT NULL,
     engine STRING NOT NULL,
     user STRING NOT NULL,
     repo STRING NOT NULL
