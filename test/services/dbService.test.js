@@ -8,10 +8,8 @@ jest.mock('../../utilities')
 const database = require('../../utilities').database
 const { dbService } = require('../../services')
 
-const getTicketFn = jest
-    .fn()
-    .mockReturnValue('default')
-    .mockImplementation(() => {
+test('dbService_getTicket_withExistingTicket', () => {
+    const getTicketFn = jest.fn().mockImplementation(() => {
         return [
             {
                 status: "status",
@@ -22,19 +20,6 @@ const getTicketFn = jest
                 repo: "repo"
             }
         ]})
-    .mockName('getTicket');
-
-const notFoundTicketFn = jest.fn()
-        .mockReturnValue('default')
-        .mockImplementation(() => [])
-        .mockName('notFoundTicket')
-
-const uuidTicketFn = jest.fn()
-    .mockReturnValue('default')
-    .mockImplementation(() => [{uuid: 'niceUuid'}])
-    .mockName('uuidTicketFn')
-
-test('dbService_getTicket_withExistingTicket', () => {
     database.query.mockImplementation(getTicketFn)
     const ticket = dbService.getTicket('1234')
     expect(getTicketFn).toHaveBeenCalled()
@@ -43,14 +28,16 @@ test('dbService_getTicket_withExistingTicket', () => {
 })
 
 test('dbService_getTicket_withNonExistingTicket', () => {
+    const notFoundTicketFn = jest.fn().mockImplementation(() => [])
     database.query.mockImplementation(notFoundTicketFn)
     const ticket = dbService.getTicket('1234')
-    expect(getTicketFn).toHaveBeenCalled()
-    expect(getTicketFn.mock.calls.length).toBe(1)
+    expect(notFoundTicketFn).toHaveBeenCalled()
+    expect(notFoundTicketFn.mock.calls.length).toBe(1)
     expect(ticket).toStrictEqual(null)
 })
 
 test('dbService_postTicket_withExistingTicket', () => {
+    const uuidTicketFn = jest.fn().mockImplementation(() => [{uuid: 'niceUuid'}])
     database.query.mockImplementation(uuidTicketFn)
     const result = dbService.postTicket('user', 'repo')
     expect(uuidTicketFn.mock.calls.length).toBe(1)
@@ -58,7 +45,9 @@ test('dbService_postTicket_withExistingTicket', () => {
 })
 
 test('dbService_postTicket_withNonExistingTicket', () => {
+    const notFoundTicketFn = jest.fn().mockImplementation(() => [])
     database.query.mockImplementation(notFoundTicketFn)
     dbService.postTicket('user', 'repo')
-    expect(uuidTicketFn.mock.calls.length).toBe(1)
+    expect()
+    expect(notFoundTicketFn.mock.calls.length).toBe(1)
 })
