@@ -1,10 +1,10 @@
 //
-// bodyValidator.test (06/04/2022)
+// paramValidator.test (06/04/2022)
 //
 // MIT License
 // Copyright (c) 2022 garbagemza
 
-const { bodyValidator } = require('../../utilities')
+const { paramValidator } = require('../../utilities')
 
 test('should validate ok', () => { 
     const statusFn = jest.fn((code) => {})
@@ -18,7 +18,7 @@ test('should validate ok', () => {
     const fn = (object) => {
         return object
     }
-    bodyValidator(fn)({body: 'hello'}, res, doneFn)
+    paramValidator(fn)({params: 'hello'}, res, doneFn)
     expect(statusFn.mock.calls.length).toBe(0)
     expect(sendFn.mock.calls.length).toBe(0)
     expect(doneFn.mock.calls.length).toBe(1)
@@ -37,7 +37,7 @@ test('should throw error', () => {
     const fn = (object) => {
         throw {message: 'oops, an error'}
     }
-    bodyValidator(fn)({body: {data: 'some data'}}, res, doneFn)
+    paramValidator(fn)({params: {data: 'some data'}}, res, doneFn)
     expect(statusFn.mock.calls.length).toBe(1)
     expect(sendFn.mock.calls.length).toBe(1)
     expect(doneFn.mock.calls.length).toBe(0)
