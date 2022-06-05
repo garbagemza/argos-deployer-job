@@ -5,6 +5,11 @@
 // Copyright (c) 2022 garbagemza
 
 const { bodyValidator } = require('../../utilities')
+const logger = require('../../utilities/logger')
+jest.mock('../../utilities/logger')
+
+logger.info.mockImplementation(() => undefined)
+
 
 test('should validate ok', () => { 
     const statusFn = jest.fn((code) => {})
