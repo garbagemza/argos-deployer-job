@@ -6,11 +6,6 @@
 
 const { handler } = require('../../utilities')
 
-const logger = require('../../utilities/logger')
-jest.mock('../../utilities/logger')
-
-logger.info.mockImplementation(() => undefined)
-
 test('should handle ok', () => { 
     const statusFn = jest.fn((code) => {})
     const sendFn = jest.fn(() => {})
