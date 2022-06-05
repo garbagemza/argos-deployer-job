@@ -7,7 +7,8 @@ const { envcheck } = require('../../utilities')
 
 test('should not throw exception', () => {
     process.env['exists'] = 1
-    envcheck(['exists'])
+    const t = () => envcheck(['exists'])
+    expect(t).not.toThrow()
 })
 
 test('should throw exception', () => {
