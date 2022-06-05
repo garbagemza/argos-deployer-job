@@ -3,6 +3,7 @@
 //
 // MIT License
 // Copyright (c) 2022 garbagemza
+
 const { envcheck } = require('../../utilities')
 
 test('should not throw exception', () => {
