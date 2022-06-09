@@ -6,16 +6,24 @@
 
 const wrapper = require('../../express')
 
-test('should expect required callbacks and one or more do not exist', () => {
-    const t = () => wrapper()
-    expect(t).toThrow()
+describe('express.express', () => {
+    test('callWrapper_allParams_shouldValidate', () => {
+        const beforeFn = jest.fn()
+        const afterFn = jest.fn()
+        wrapper({
+            beforeInitialization: beforeFn,
+            afterInitialization: afterFn
+        })
+        expect(beforeFn.mock.calls.length).toBe(1)
+        expect(afterFn.mock.calls.length).toBe(1)
+    })
+
+    test('callWrapper_missingAfterCallback_shouldThrow', () => {
+        expect.assertions(1)
+        try {
+            wrapper({beforeInitialization: () => {}})
+        } catch (error) {
+            expect(error.message).toBe('expected afterInitialization callback.')
+        }
+    })
 })
-
-// test('should initialize', () => {
-//     const beforeFn = jest.fn()
-//     wrapper({
-//         beforeInitialization: beforeFn
-//     })
-//     expect(beforeFn.mock.calls.length).toBe(1)
-
-// })
