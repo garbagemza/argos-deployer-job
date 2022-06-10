@@ -1,18 +1,4 @@
 const express = require('express')
-var app = {}
+const expressWrapper = require('./express')
 
-module.exports = (callbacks) => {
-    checkRequiredCallbacks(callbacks)
-    const app = express()
-    callbacks.beforeInitialization(app)
-    callbacks.afterInitialization(app)
-}
-
-const checkRequiredCallbacks = function(callbacks) {
-    const names = ['beforeInitialization', 'afterInitialization']
-    names.forEach(name => {
-        if (callbacks[name] === undefined) {
-            throw Error(`expected ${name} callback.`)
-        }
-    })
-}
+module.exports = (options) => expressWrapper(express, options)
