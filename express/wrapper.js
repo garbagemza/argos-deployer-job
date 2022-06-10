@@ -1,13 +1,11 @@
 const { catchAll, health } = require('../middlewares')
 const { handler } = require('../utilities')
-const loggerStub  = require('./loggerStub')
 const MetaBuilder = require('./metaBuilder')
 
 var logger = {}
 
 module.exports = (express, options) => {
-    logger = options.verbose || loggerStub
-
+    logger = checkRequired(options, 'verbose')
     checkRequiredCallbacks(options)
 
     const meta = new MetaBuilder(express)
@@ -17,6 +15,13 @@ module.exports = (express, options) => {
     options.addMiddlewares(meta)
     afterMiddleware(meta.app)
     options.afterInitialization(meta.app)
+}
+
+const checkRequired = (options, parameter) => {
+    if (options[parameter] === undefined) {
+        throw new Error(`Undefined parameter '${parameter}'`)
+    }
+    return options[parameter]
 }
 
 const checkRequiredCallbacks = function(callbacks) {

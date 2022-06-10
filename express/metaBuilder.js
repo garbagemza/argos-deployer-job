@@ -7,7 +7,7 @@
 const Builder = require('./builder')
 const { bodyValidator, paramValidator, handler } = require('../utilities')
 
-class WrapperBuilder {
+class MetaBuilder {
     #app
     #express
 
@@ -38,10 +38,6 @@ class WrapperBuilder {
     get app() {
         return this.#app
     }
-
-    get express() {
-        return this.#express
-    }
 }
 
-module.exports = WrapperBuilder
+module.exports = MetaBuilder

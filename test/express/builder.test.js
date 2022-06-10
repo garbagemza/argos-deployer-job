@@ -14,7 +14,7 @@ describe('express.builder', () => {
         const handler = () => {}
         const controller = () => {}
         const app = {
-            post: (endpoint, controller) => { console.log(endpoint, controller) }
+            post: () => {}
         }
         const builder = new Builder()
         const object = builder.withApp(app)

@@ -13,4 +13,13 @@ describe('express.metaBuilder', () => {
             .post('/')
             .build()
     })
+
+    test('constructor_missingParam_shouldThrow', () => {
+        expect.assertions(1)
+        try {
+            new MetaBuilder()
+        } catch (error) {
+            expect(error.message).toBe('Invalid express object.')
+        }
+    })
 })

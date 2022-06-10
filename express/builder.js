@@ -59,7 +59,7 @@ class Builder {
         this.call = {method:'get', endpoint: endpoint}
         return this
     }
-    
+
     validateBody(fn) {
         if (typeof fn != 'function') {
             throw new Error('Invalid body validator type. Expected function.')
