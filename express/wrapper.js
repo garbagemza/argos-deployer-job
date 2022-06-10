@@ -1,22 +1,22 @@
-
-
 const { catchAll, health } = require('../middlewares')
 const { handler } = require('../utilities')
-
 const loggerStub  = require('./loggerStub')
+const MetaBuilder = require('./metaBuilder')
 
 var logger = {}
 
 module.exports = (express, options) => {
     logger = options.verbose || loggerStub
 
-    const app = express()
     checkRequiredCallbacks(options)
-    options.beforeInitialization(app)
-    beforeMiddleware(express, app)
-    options.addMiddlewares(app)
-    afterMiddleware(app)
-    options.afterInitialization(app)
+
+    const meta = new MetaBuilder(express)
+    
+    options.beforeInitialization(meta)
+    beforeMiddleware(express, meta.app)
+    options.addMiddlewares(meta)
+    afterMiddleware(meta.app)
+    options.afterInitialization(meta.app)
 }
 
 const checkRequiredCallbacks = function(callbacks) {

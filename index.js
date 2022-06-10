@@ -16,11 +16,17 @@ express({
         database.init()
     },
     addMiddlewares: (app) => {
-        app.post('/ticket', bodyValidator(validatePostTicket))
-        app.post('/ticket', handler(postTicketController))
+        app.builder()
+            .post('/ticket')
+            .validateBody(validatePostTicket)
+            .controller(postTicketController)
+            .build()
 
-        app.get('/ticket/:ticket', paramValidator(validateTicket))
-        app.get('/ticket/:ticket', handler(getTicketController))
+        app.builder()
+            .get('/ticket/:ticket')
+            .validateParam(validateTicket)
+            .controller(getTicketController)
+            .build()
     },
     afterInitialization: (app) => {
         logger.info(`argos-deploy.port ${process.env.PORT}`)

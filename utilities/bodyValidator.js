@@ -6,6 +6,7 @@ const validator = (func) => (req, res, done) => {
         logger.info('server.validator.begun')
         logger.info(`server.validator.data ${JSON.stringify(req.body)}`)
         func(req.body)
+        logger.info('server.validator.ok')
         done()
     } catch(e){
             logger.warn('server.validator.failed')
