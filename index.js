@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('./express')
 
-const { envcheck, logger, handler, bodyValidator, paramValidator, database } = require('./utilities')
+const { envcheck, logger, database } = require('./utilities')
 const { validateTicket, validatePostTicket } = require('./models')
 
 const { getTicketController, postTicketController } = require('./controllers')

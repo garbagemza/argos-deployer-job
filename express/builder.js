@@ -45,7 +45,7 @@ class Builder {
 
     withHandler(handler) {
         if (typeof handler != 'function') {
-            throw new Error('Invalid param validator type. Expected function.')
+            throw new Error('Invalid handler type. Expected function.')
         }
         this.handler = handler
         return this
