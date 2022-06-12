@@ -16,11 +16,11 @@
   "homepage": "",
   "dependencies": {
     "dotenv": "^16.0.0",
-    "express": "^4.18.1",
     "http-errors": "^2.0.0",
     "joi": "^17.6.0",
     "jsonfile": "^6.1.0",
     "nanoid": "^3.3.4",
+    "npm-express": "github:garbagemza/npm-express",
     "npm-sqlite": "github:garbagemza/npm-sqlite",
     "winston": "^3.7.2",
     "winston-daily-rotate-file": "^4.6.1"

@@ -1,5 +1,5 @@
 require('dotenv').config();
-const express = require('./express')
+const express = require('npm-express')
 
 const { envcheck, logger, database } = require('./utilities')
 const { validateTicket, validatePostTicket } = require('./models')
@@ -33,4 +33,3 @@ express({
         app.listen(process.env.PORT)
     }
 })
-

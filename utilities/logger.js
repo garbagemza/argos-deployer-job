@@ -4,9 +4,7 @@ require('winston-daily-rotate-file')
 const currentLogger = function() {
     if (process.env['IGNORE_LOGGER']) 
         return {
-            info: () => undefined,
-            warn: () => undefined,
-            error: () => undefined
+            info: () => undefined
         }
     else
         return winstonLogger()
