@@ -9,10 +9,6 @@ jest.mock('npm-sqlite')
 
 const database = require('../../utilities/database')
 const sqlite = require('npm-sqlite')
-const logger = require('../../utilities/logger')
-jest.mock('../../utilities/logger')
-
-logger.info.mockImplementation(() => undefined)
 
 test('should init', () => { 
     const runnerFn = jest.fn().mockImplementation(() => {})

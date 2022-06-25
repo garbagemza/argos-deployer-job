@@ -20,7 +20,6 @@ const runInTransaction = function(statements) {
     sqlite.runInTransaction(db, statements, logger.info)
 }
 
-
 const query = function(statement) {
     logger.info(`utilities.database.query`)
     return sqlite.query(db, statement, logger.info)

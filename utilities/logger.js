@@ -1,15 +1,6 @@
 const winston = require('winston')
 require('winston-daily-rotate-file')
 
-const currentLogger = function() {
-    if (process.env['IGNORE_LOGGER']) 
-        return {
-            info: () => undefined
-        }
-    else
-        return winstonLogger()
-}
-
 const winstonLogger = function() {
     const logFormat = winston.format.combine(
         winston.format.colorize(),
@@ -46,4 +37,4 @@ const winstonLogger = function() {
     return logger    
 }
 
-module.exports = currentLogger()
+module.exports = winstonLogger()
