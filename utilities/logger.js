@@ -37,4 +37,4 @@ const winstonLogger = function() {
     return logger    
 }
 
-module.exports = winstonLogger()
+module.exports = winstonLogger

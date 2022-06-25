@@ -6,14 +6,15 @@ const { validateTicket, validatePostTicket } = require('./models')
 
 const { getTicketController, postTicketController } = require('./controllers')
 
+const _logger = logger()
+
 express({
-    verbose: logger,
+    verbose: _logger,
     beforeInitialization: () => {
         // this checks the existence of environment variables, if they are not declared
         // an exception is thrown.
         envcheck(['PORT', 'WORKDIR'])
-
-        database.init()
+        database.init(_logger)
     },
     addMiddlewares: (app) => {
         app.builder()
@@ -29,7 +30,7 @@ express({
             .build()
     },
     afterInitialization: (app) => {
-        logger.info(`argos-deploy.port ${process.env.PORT}`)
+        _logger.info(`argos-deploy.port ${process.env.PORT}`)
         app.listen(process.env.PORT)
     }
 })

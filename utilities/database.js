@@ -1,8 +1,9 @@
-const logger = require('./logger.js')
 const sqlite = require('npm-sqlite')
 var db = {}
+var logger = {}
 
-const init = function() {
+const init = function(_logger) {
+    logger = _logger
     logger.info(`utilities.database.configure`)
 
     const options = {
